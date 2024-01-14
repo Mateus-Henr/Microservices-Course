@@ -6,23 +6,38 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-posts = []
+const posts = {}
 
-app.get('/posts/:id/comments', (req, res) =>
+app.get('/posts', (req, res) =>
 {
-
-});
-
-app.post('/posts/:id/comments', (req, res) =>
-{
-
+    res.send(posts);
 });
 
 app.post('/events', (req, res) =>
 {
-    console.log('Received Event', req.body.type);
+    const {type, data} = req.body;
 
-    res.send({});
+    if (type === 'PostCreated')
+    {
+        const {id, title} = data;
+
+        posts[id] = {
+            id,
+            title,
+            comments: []
+        }
+    }
+    else if (type === 'CommentCreated')
+    {
+        const {id, content, postId} = data;
+
+        posts[postId].comments.push({
+            id,
+            content
+        });
+    }
+
+    res.send({status: 'OK'});
 });
 
 app.listen(4002, () => console.log('Listening on 4002'));
