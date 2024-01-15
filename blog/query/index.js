@@ -46,8 +46,6 @@ app.post('/events', (req, res) =>
         });
 
         posts[postId].comments[commentIdx] = data;
-
-        console.log(posts[postId].comments);
     }
 
     res.send({status: 'OK'});
