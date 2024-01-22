@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: posts
-          image: matt/posts
+          image: mattdocker10/posts
 ---
 apiVersion: v1
 kind: Service
