@@ -1,0 +1,57 @@
+apiVersion: skaffold/v4beta3
+kind: Config
+manifests:
+  rawYaml: # Tells skaffold about a collection of config files
+    - ./infra/k8s/*
+build:
+  local:
+    push: false
+  artifacts:
+    - image: mattdocker10/client
+      context: client
+      docker:
+        dockerfile: Dockerfile
+      sync: # Informs what files can be updated without having to rebuild the entire image.
+        manual:
+          - src: 'src/**/*.js'
+            dest: .
+    - image: mattdocker10/comments
+      context: comments
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '*.js'
+            dest: .
+    - image: mattdocker10/event-bus
+      context: event-bus
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '*.js'
+            dest: .
+    - image: mattdocker10/moderation
+      context: moderation
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '*.js'
+            dest: .
+    - image: mattdocker10/posts
+      context: posts
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '*.js'
+            dest: .
+    - image: mattdocker10/query
+      context: query
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '*.js'
+            dest: .
