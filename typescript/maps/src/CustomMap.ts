@@ -1,4 +1,4 @@
-interface Position {
+interface Mappable {
     location: {
         lat: number,
         lng: number
@@ -17,13 +17,23 @@ export class CustomMap {
             }
         });
     }
+    // By using th e "|" we make an object that only has the properties that are common in both classes. BAD APPROACH.
+    // public addMarker2(mappable: User | Company): void {
+    //     new google.maps.Marker({
+    //         map: this.googleMap,
+    //         position: {
+    //             lat: mappable.location.lat,
+    //             lng: mappable.location.lng
+    //         }
+    //     });
+    // }
 
-    public addMarker(position: Position): void {
+    public addMarker(mappable: Mappable): void {
         new google.maps.Marker({
             map: this.googleMap,
             position: {
-                lat: position.location.lat,
-                lng: position.location.lng
+                lat: mappable.location.lat,
+                lng: mappable.location.lng
             }
         });
     }
