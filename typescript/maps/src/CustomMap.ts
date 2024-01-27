@@ -1,8 +1,11 @@
-interface Mappable {
+export interface Mappable { // Implements is used to make sure that an object will implement an interface.
     location: {
         lat: number,
         lng: number
-    }
+    };
+    color: string;
+
+    markerContent(): string;
 }
 
 export class CustomMap {
@@ -17,6 +20,7 @@ export class CustomMap {
             }
         });
     }
+
     // By using th e "|" we make an object that only has the properties that are common in both classes. BAD APPROACH.
     // public addMarker2(mappable: User | Company): void {
     //     new google.maps.Marker({
@@ -29,12 +33,21 @@ export class CustomMap {
     // }
 
     public addMarker(mappable: Mappable): void {
-        new google.maps.Marker({
+        const marker = new google.maps.Marker({
             map: this.googleMap,
             position: {
                 lat: mappable.location.lat,
                 lng: mappable.location.lng
             }
         });
+
+        marker.addListener('click', () => {
+            const infoWindow = new google.maps.InfoWindow({
+                content: mappable.markerContent()
+            });
+
+            infoWindow.open(this.googleMap, marker);
+        });
+
     }
 }
