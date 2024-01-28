@@ -1,25 +1,25 @@
 import {ValidationError} from 'express-validator';
-import {CommonErrorStructure} from "./common-error-structure";
+import {CustomError} from "./custom-error";
 
-export default class RequestValidationError extends Error implements CommonErrorStructure {
-    private statusCode = 400;
+export default class RequestValidationError extends CustomError {
+    statusCode = 400;
 
     constructor(private errors: ValidationError[]) {
-        super();
+        super('Invalid request parameters');
 
         // Because we are using ts, we have to do the following:
         Object.setPrototypeOf(this, RequestValidationError.prototype);
     }
 
     public serializeErrors() {
-        return [
-            this.errors.map(error => {
-                if (error.type === 'field') {
+        return this.errors.map(error => {
+            if (error.type === 'field') {
 
-                    return {message: error.msg, field: error.path};
-                }
-            })
-        ];
+                return {message: error.msg, field: error.path};
+            }
+
+            return {message: error.msg};
+        });
     }
 
     public getStatusCode(): number {
