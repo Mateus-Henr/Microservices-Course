@@ -27,6 +27,15 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     }
+}, {
+    toJSON: {
+        transform(doc, ret) {
+            ret.id = ret._id;
+            delete ret._id;
+            delete ret.password; // Removing property from the doc
+            delete ret.__v;
+        }
+    }
 });
 
 // Adding a function to a model.
