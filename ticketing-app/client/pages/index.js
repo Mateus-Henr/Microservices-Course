@@ -15,12 +15,12 @@ const LandingPage = ({currentUser}) =>
 // We cannot fetch data from inside a component. Hooks can only be used inside components.
 // This function is executed on the server, however when the user is navigating from one page to another while in the
 // app, it is executed on the client.
-// LandingPage.getInitialProps = async (context) =>
-// {
-//     const client = buildClient(context);
-//     const {data} = await client.get('/api/users/currentuser');
-//
-//     return data;
-// };
+LandingPage.getInitialProps = async (context) =>
+{
+    const client = buildClient(context);
+    const {data} = await client.get('/api/users/currentuser');
+
+    return data;
+};
 
 export default LandingPage;
