@@ -1,5 +1,5 @@
-import express from "express";
-import {currentUser} from "../middlewares/current-user";
+import express from 'express';
+import {currentUser} from '@sgtickers-course/common';
 
 const router = express.Router();
 
