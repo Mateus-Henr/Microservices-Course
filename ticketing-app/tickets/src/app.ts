@@ -2,13 +2,10 @@ import express from 'express';
 
 require('express-async-errors');
 import {json} from 'body-parser';
-import {currentUserRouter} from "./routes/current-user";
-import {signInRouter} from "./routes/signin";
-import {signUpRouter} from "./routes/signup";
-import {signOutRouter} from "./routes/signout";
-import {errorHandler} from "@sgtickers-course/common";
+import {currentUser, errorHandler} from "@sgtickers-course/common";
 import {NotFoundError} from "@sgtickers-course/common";
 import cookieSession from "cookie-session";
+import {createTicketRouter} from "./routes/new";
 
 const app = express();
 
@@ -20,11 +17,9 @@ app.use(
         secure: process.env.NODE_ENV !== 'test' // Https connection
     })
 )
+app.use(currentUser);
 
-app.use(currentUserRouter);
-app.use(signInRouter);
-app.use(signUpRouter);
-app.use(signOutRouter);
+app.use(createTicketRouter);
 
 app.all('*', async (req, res) => {
     throw new NotFoundError();
