@@ -22,7 +22,7 @@ const ticketSchema = new mongoose.Schema({
         required: true
     },
     price: {
-        type: Float32Array,
+        type: Number,
         required: true
     },
     userId: {
@@ -34,7 +34,6 @@ const ticketSchema = new mongoose.Schema({
         transform(doc, ret) {
             ret.id = ret._id;
             delete ret._id;
-            delete ret.__v;
         }
     }
 });
