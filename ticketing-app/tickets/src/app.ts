@@ -2,10 +2,11 @@ import express from 'express';
 
 require('express-async-errors');
 import {json} from 'body-parser';
-import {currentUser, errorHandler} from "@sgtickers-course/common";
-import {NotFoundError} from "@sgtickers-course/common";
-import cookieSession from "cookie-session";
-import {createTicketRouter} from "./routes/new";
+import {currentUser, errorHandler} from '@sgtickers-course/common';
+import {NotFoundError} from '@sgtickers-course/common';
+import cookieSession from 'cookie-session';
+import {createTicketRouter} from './routes/new';
+import {showTicketRouter} from './routes/show';
 
 const app = express();
 
@@ -18,8 +19,8 @@ app.use(
     })
 )
 app.use(currentUser);
-
 app.use(createTicketRouter);
+app.use(showTicketRouter);
 
 app.all('*', async (req, res) => {
     throw new NotFoundError();
