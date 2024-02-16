@@ -22,7 +22,7 @@ spec:
             '8222',
             '-hbi',
             '5s',
-            '-hbt',
+            '-hbt', # 'hb*' means heartbeat, for health reasons.
             '5s',
             '-hbf',
             '2',
