@@ -1,12 +1,26 @@
-import mongoose from "mongoose";
-import request from "supertest";
-import {app} from "../../app";
+import request from 'supertest';
+import {app} from '../../app';
 
-it('returns a 404 if a ticket is not found', async () => {
-    const id = new mongoose.Types.ObjectId().toHexString();
+const createTicket = () => {
+    return request(app)
+        .post('/api/tickets')
+        .set('Cookie', global.signin())
+        .send({
+            title: 'asldkf',
+            price: 20,
+        });
+};
 
-    await request(app)
-        .get(`/api/tickets/fdsdfdsfdsf/${id}`)
-        .send()
-        .expect(404);
+it('can fetch a list of tickets', async () => {
+    await createTicket();
+    await createTicket();
+    await createTicket();
+
+    const response = await request(app)
+        .get('/api/tickets')
+        .send();
+
+    console.log(response.body);
+
+    expect(response.body.length).toEqual(3);
 });
