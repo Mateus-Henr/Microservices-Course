@@ -102,4 +102,11 @@ it('update the tickets provided valid inputs', async () => {
             price: 30
         })
         .expect(200);
+
+    const ticketResponse = await request(app)
+        .get(`/api/tickets/${response.body.id}`)
+        .send();
+
+    expect(ticketResponse.body.title).toEqual('fsdfsdfsd');
+    expect(ticketResponse.body.price).toEqual(30);
 });
