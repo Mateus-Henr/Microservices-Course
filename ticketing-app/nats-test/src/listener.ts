@@ -16,27 +16,7 @@ stan.on('connect', () => {
         process.exit();
     });
 
-    // We have to confirm that everything goes right, so the event doesn't get lost if an error occurs.
-    // It also resends the event to the service.
-    const options = stan
-        .subscriptionOptions()
-        .setManualAckMode(true)
-        .setDeliverAllAvailable() // Used to get a list of all events emitted from NATS.
-        .setDurableName('accounting-service'); // Used to store the events and their status, so events that have already
-    // been processed won't appear again.
-
-    // Creating subscription and joining it to a group
-    const subscription = stan.subscribe('ticket:created',
-        'queue-group-name', // Also helps not to dump the durable names.
-        options);
-
-    subscription.on('message', (msg: Message) => {
-        const data = msg.getData();
-
-        console.log(`Received event #${msg.getSequence()}, with data: ${data}`);
-
-        msg.ack();
-    });
+    new TickedCreatedListener(stan).listen();
 });
 
 // Closing the connection whenever interruption signals are signed.
@@ -47,7 +27,7 @@ abstract class Listener {
     abstract subject: string;
     abstract queueGroupName: string;
 
-    abstract onMessage(data: any, msg: Message): void;
+    protected abstract onMessage(data: any, msg: Message): void;
 
     private client: Stan;
     protected ackWait = 5 * 1000; // 5s
@@ -56,13 +36,13 @@ abstract class Listener {
         this.client = client;
     }
 
-    subscriptionOptions() {
+    private subscriptionOptions() {
         return this.client
             .subscriptionOptions()
             .setDeliverAllAvailable()
             .setManualAckMode(true)
             .setAckWait(this.ackWait)
-            .setDurableName(this.queueGroupName)
+            .setDurableName(this.queueGroupName);
     }
 
     listen() {
@@ -82,7 +62,7 @@ abstract class Listener {
         });
     }
 
-    parseMessage(msg: Message) {
+    private parseMessage(msg: Message) {
         const data = msg.getData();
 
         return typeof data === 'string'
