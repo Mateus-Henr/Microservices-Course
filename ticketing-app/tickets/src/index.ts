@@ -12,6 +12,16 @@ const start = async () => {
 
     try {
         await natsWrapper.connect('ticketing', 'dasdas', 'http://nats-srv:4222');
+
+        // Central location to check close connection.
+        natsWrapper.client.on('close', () => {
+            console.log('NATS connection closed!');
+            process.exit();
+        });
+
+        process.on('SIGINT', () => natsWrapper.client.close());
+        process.on('SIGTERM', () => natsWrapper.client.close());
+
         await mongoose.connect(process.env.MONGO_URI);
     } catch (err) {
         console.log(err);
