@@ -1,6 +1,6 @@
 import nats from 'node-nats-streaming';
 import {randomBytes} from 'node:crypto';
-import {TickedCreatedListener} from './events/ticket-created-listener';
+import {TicketCreatedListener} from './events/ticket-created-listener';
 
 console.clear();
 
@@ -17,7 +17,7 @@ stan.on('connect', () => {
         process.exit();
     });
 
-    new TickedCreatedListener(stan).listen();
+    new TicketCreatedListener(stan).listen();
 });
 
 // Closing the connection whenever interruption signals are signed.
