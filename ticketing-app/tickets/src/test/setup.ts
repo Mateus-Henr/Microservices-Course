@@ -8,6 +8,9 @@ declare global {
 
 let mongo: any;
 
+// Telling jest to use a mock file.
+jest.mock('../nats-wrapper');
+
 beforeAll(async () => {
     process.env.JWT_KEY = 'adasdas';
 
