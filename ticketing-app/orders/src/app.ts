@@ -5,10 +5,6 @@ import {json} from 'body-parser';
 import {currentUser, errorHandler} from '@sgtickers-course/common';
 import {NotFoundError} from '@sgtickers-course/common';
 import cookieSession from 'cookie-session';
-import {createTicketRouter} from './routes/new';
-import {showTicketRouter} from './routes/show';
-import {indexTicketRouter} from './routes';
-import {updateTicketRouter} from './routes/update';
 
 const app = express();
 
