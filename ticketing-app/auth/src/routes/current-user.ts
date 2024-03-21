@@ -1,12 +1,13 @@
-import express from 'express';
-import {currentUser} from '@sgtickers-course/common';
+import express from "express";
+import {currentUser} from "@sgtickers-course/common";
 
 const router = express.Router();
 
 // Checks whether the user is logged in.
-router.get('/api/users/currentuser',
+router.get("/api/users/currentuser",
     currentUser,
-    (req, res) => {
+    (req, res) =>
+    {
         res.send({currentUser: req.currentUser || null}); // Returns null instead of undefined.
     });
 

@@ -8,7 +8,8 @@ const person = {
 
 console.log(person.age);
 
-class Color {
+class Color
+{
 
 }
 

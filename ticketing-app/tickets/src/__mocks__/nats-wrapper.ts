@@ -1,11 +1,10 @@
-import {Stan} from 'node-nats-streaming';
-
 export const natsWrapper = {
     client: {
 
         // Mock function (allow us to use expectations)
         publish: jest.fn().mockImplementation(
-            (subject: string, data: string, callback: () => void) => {
+            (subject: string, data: string, callback: () => void) =>
+            {
                 callback();
             })
     }

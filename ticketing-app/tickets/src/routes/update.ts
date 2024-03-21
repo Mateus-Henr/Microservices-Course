@@ -1,32 +1,35 @@
-import express, {Request, Response} from 'express';
-import {Ticket} from '../models/ticket';
-import {NotAuthorizedError, NotFoundError, requireAuth, validateRequest} from '@sgtickers-course/common';
-import {body} from 'express-validator';
-import {TicketUpdatedPublisher} from '../events/publishers/ticket-updated-publisher';
-import {natsWrapper} from '../nats-wrapper';
+import express, {Request, Response} from "express";
+import {Ticket} from "../models/ticket";
+import {NotAuthorizedError, NotFoundError, requireAuth, validateRequest} from "@sgtickers-course/common";
+import {body} from "express-validator";
+import {TicketUpdatedPublisher} from "../events/publishers/ticket-updated-publisher";
+import {natsWrapper} from "../nats-wrapper";
 
 const router = express.Router();
 
-router.put('/api/tickets/:id',
+router.put("/api/tickets/:id",
     requireAuth,
     [
-        body('title')
+        body("title")
             .not()
             .isEmpty()
-            .withMessage('Title is required'),
-        body('price')
+            .withMessage("Title is required"),
+        body("price")
             .isFloat({gt: 0})
-            .withMessage('Price must be greater than 0')
+            .withMessage("Price must be greater than 0")
     ],
     validateRequest,
-    async (req: Request, res: Response) => {
+    async (req: Request, res: Response) =>
+    {
         const ticket = await Ticket.findById(req.params.id);
 
-        if (!ticket) {
+        if (!ticket)
+        {
             throw new NotFoundError();
         }
 
-        if (ticket.userId !== req.currentUser!.id) {
+        if (ticket.userId !== req.currentUser!.id)
+        {
             throw new NotAuthorizedError();
         }
 

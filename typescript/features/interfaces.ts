@@ -1,14 +1,16 @@
 const oldCivic = {
-    name: 'civic',
+    name: "civic",
     year: 2000,
     broken: true,
 
-    summary(): string {
+    summary(): string
+    {
         return `Name: ${this.name}`;
     }
 };
 
-const printVehicle = (vehicle: { name: string; year: number; broken: boolean }): void => {
+const printVehicle = (vehicle: { name: string; year: number; broken: boolean }): void =>
+{
     console.log(`Name: ${vehicle.name}`);
     console.log(`Year: ${vehicle.year}`);
     console.log(`Broken: ${vehicle.broken}`);
@@ -18,7 +20,8 @@ printVehicle(oldCivic);
 
 
 // Using the interface (Starts with a capital letter)
-interface Reportable {
+interface Reportable
+{
     // name: string;
     // year: number;
     // broken: boolean;
@@ -26,7 +29,8 @@ interface Reportable {
     summary(): string;
 }
 
-const printSummary = (item: Reportable): void => {
+const printSummary = (item: Reportable): void =>
+{
     console.log(item.summary());
 };
 
@@ -34,11 +38,12 @@ printSummary(oldCivic);
 
 
 const drink = {
-    color: 'brown',
+    color: "brown",
     carbonated: true,
     sugar: 40,
 
-    summary(): string {
+    summary(): string
+    {
         return `drink has ${this.sugar} grams of sugar`;
     }
 };

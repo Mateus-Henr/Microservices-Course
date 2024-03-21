@@ -1,37 +1,39 @@
-import express, {Request, Response} from 'express';
-import {body} from 'express-validator';
-import {validateRequest} from "@sgtickers-course/common";
+import express, {Request, Response} from "express";
+import {body} from "express-validator";
+import {BadRequestError, validateRequest} from "@sgtickers-course/common";
 import {User} from "../models/user";
-import {BadRequestError} from "@sgtickers-course/common";
 import {Password} from "../services/password";
 import jwt from "jsonwebtoken";
 
 const router = express.Router();
 
-router.post('/api/users/signin',
+router.post("/api/users/signin",
     [
-        body('email')
+        body("email")
             .isEmail()
-            .withMessage('Email must be valid'),
-        body('password')
+            .withMessage("Email must be valid"),
+        body("password")
             .trim()
             .notEmpty()
-            .withMessage('You must supply a password')
+            .withMessage("You must supply a password")
     ],
     validateRequest,
-    async (req: Request, res: Response) => {
+    async (req: Request, res: Response) =>
+    {
         const {email, password} = req.body;
 
         const existingUser = await User.findOne({email});
 
-        if (!existingUser) {
-            throw new BadRequestError('Invalid credentials');
+        if (!existingUser)
+        {
+            throw new BadRequestError("Invalid credentials");
         }
 
         const passwordsMatch = await Password.compare(existingUser.password, password);
 
-        if (!passwordsMatch) {
-            throw new BadRequestError('Invalid credentials');
+        if (!passwordsMatch)
+        {
+            throw new BadRequestError("Invalid credentials");
         }
 
         // Generating JWT

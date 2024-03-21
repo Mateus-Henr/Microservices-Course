@@ -1,7 +1,8 @@
 import {faker} from "@faker-js/faker";
 import {Mappable} from "./CustomMap"; // Type definition files for ts, usually at "@type/{library}".
 
-export class User implements Mappable { // We don't use default statement in ts.
+export class User implements Mappable
+{ // We don't use default statement in ts.
     public name: string;
     public location: {
         lat: number,
@@ -9,7 +10,8 @@ export class User implements Mappable { // We don't use default statement in ts.
     };
     color = "blue";
 
-    constructor() {
+    constructor()
+    {
         this.name = faker.name.fullName();
         this.location = {
             lat: parseFloat(faker.address.latitude()),
@@ -17,7 +19,8 @@ export class User implements Mappable { // We don't use default statement in ts.
         }
     }
 
-    public markerContent(): string {
+    public markerContent(): string
+    {
         return `<h1>User Name: ${this.name}</h1>`;
     }
 }

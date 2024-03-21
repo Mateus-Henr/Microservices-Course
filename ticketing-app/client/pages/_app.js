@@ -3,11 +3,10 @@ import buildClient from "./api/build-client";
 import Header from "../components/header";
 
 // All components are going to pass through this component. That's why global CSS is imported here.
-const AppComponent = ({Component, pageProps, currentUser}) =>
-{
+const AppComponent = ({Component, pageProps, currentUser}) => {
     return (
         <div>
-            <Header currentUser={currentUser} />
+            <Header currentUser={currentUser}/>
             <Component {...pageProps} />
         </div>
     );
@@ -15,8 +14,7 @@ const AppComponent = ({Component, pageProps, currentUser}) =>
 
 // Note that the arguments in the 'context' object is different when handling a Custom app component in comparison to a
 // page.
-AppComponent.getInitialProps = async (appContext) =>
-{
+AppComponent.getInitialProps = async (appContext) => {
     const client = buildClient(appContext.ctx);
     const {data} = await client.get('/api/users/currentuser');
 

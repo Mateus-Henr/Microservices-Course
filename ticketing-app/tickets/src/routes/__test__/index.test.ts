@@ -1,23 +1,25 @@
-import request from 'supertest';
-import {app} from '../../app';
+import request from "supertest";
+import {app} from "../../app";
 
-const createTicket = () => {
+const createTicket = () =>
+{
     return request(app)
-        .post('/api/tickets')
-        .set('Cookie', global.signin())
+        .post("/api/tickets")
+        .set("Cookie", global.signin())
         .send({
-            title: 'asldkf',
+            title: "asldkf",
             price: 20,
         });
 };
 
-it('can fetch a list of tickets', async () => {
+it("can fetch a list of tickets", async () =>
+{
     await createTicket();
     await createTicket();
     await createTicket();
 
     const response = await request(app)
-        .get('/api/tickets')
+        .get("/api/tickets")
         .send();
 
     expect(response.body.length).toEqual(3);

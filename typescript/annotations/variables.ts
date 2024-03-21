@@ -1,6 +1,6 @@
 let apples: number = 5; // Type annotation (set by the developer)
 apples = 10;
-let speed = 'fast'; // Type inference
+let speed = "fast"; // Type inference
 speed = "hey";
 let hasName: boolean = true;
 
@@ -13,13 +13,14 @@ let now: Date = new Date();
 
 
 // Array
-let colors: string[] = ['red', 'green', 'blue'];
+let colors: string[] = ["red", "green", "blue"];
 let myNumbers: number[] = [1, 2, 3];
 let truths: boolean[] = [true, false, true];
 
 
 // Classes
-class Car {
+class Car
+{
 
 }
 
@@ -34,23 +35,26 @@ let point: { x: number; y: number } = {
 
 
 // Function
-const logNumber: (i: number) => void = (i: number) => {
+const logNumber: (i: number) => void = (i: number) =>
+{
     console.log(i);
 }
 
 // When to use annotations
 // 1) Function that returns the 'any' type (We should try to always avoid the 'any' type).
-const json = '{"x": 10, "y": 20}';
+const json = "{\"x\": 10, \"y\": 20}";
 // const coordinates = JSON.parse(json); // With any type
 const coordinates: { x: number; y: number } = JSON.parse(json); // Setting a type
 console.log(coordinates);
 
 // 2) When we declare a variable on one line and initialize it later.
-let words = ['red', 'green', 'blue'];
+let words = ["red", "green", "blue"];
 let foundWord: boolean;
 
-for (let i = 0; i < words.length; i++) {
-    if (words[i] === 'green') {
+for (let i = 0; i < words.length; i++)
+{
+    if (words[i] === "green")
+    {
         foundWord = true;
     }
 }
@@ -59,8 +63,10 @@ for (let i = 0; i < words.length; i++) {
 let numbers = [-10, -1, 12];
 let numberAboveZero: boolean | number = false; // Can be a number or a boolean.
 
-for (let i = 0; i < numbers.length; i++) {
-    if (numbers[i] > 0) {
+for (let i = 0; i < numbers.length; i++)
+{
+    if (numbers[i] > 0)
+    {
         numberAboveZero = numbers[i];
     }
 }

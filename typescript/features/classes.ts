@@ -1,40 +1,48 @@
-class Vehicle {
+class Vehicle
+{
 
-    constructor(public color: string) { // Defining a field.
+    constructor(public color: string)
+    { // Defining a field.
     }
 
 
-    public drive(): void {
-        console.log('Driving');
+    public drive(): void
+    {
+        console.log("Driving");
     }
 
-    protected honk(): void {
-        console.log('Beep');
+    protected honk(): void
+    {
+        console.log("Beep");
     }
 }
 
-class Car extends Vehicle {
-    constructor(public wheels: number, color: string) {
+class Car extends Vehicle
+{
+    constructor(public wheels: number, color: string)
+    {
         super(color);
     }
 
-    public drive(): void { // Overriding method.
-        console.log('Vroom');
+    public drive(): void
+    { // Overriding method.
+        console.log("Vroom");
         this.internalStuff();
     }
 
-    private internalStuff(): void {
+    private internalStuff(): void
+    {
         this.honk();
     }
 }
 
 // Defining a method as private doesn't mean more security, it just means that other developers cannot use that method.
 // Protected means that we can access the method in child classes as well.
-const vehicle = new Vehicle('orange');
+const vehicle = new Vehicle("orange");
 vehicle.drive();
 
 
-const car = new Car(4, 'orange');
+const car = new Car(4, "orange");
 car.drive();
 
 console.log(vehicle.color);

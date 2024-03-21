@@ -1,4 +1,5 @@
-export interface Mappable { // Implements is used to make sure that an object will implement an interface.
+export interface Mappable
+{ // Implements is used to make sure that an object will implement an interface.
     location: {
         lat: number,
         lng: number
@@ -8,10 +9,12 @@ export interface Mappable { // Implements is used to make sure that an object wi
     markerContent(): string;
 }
 
-export class CustomMap {
+export class CustomMap
+{
     private googleMap: google.maps.Map;
 
-    constructor(divId: string, lat: number, lng: number) {
+    constructor(divId: string, lat: number, lng: number)
+    {
         this.googleMap = new google.maps.Map(document.getElementById(divId), {
             zoom: 1,
             center: {
@@ -32,7 +35,8 @@ export class CustomMap {
     //     });
     // }
 
-    public addMarker(mappable: Mappable): void {
+    public addMarker(mappable: Mappable): void
+    {
         const marker = new google.maps.Marker({
             map: this.googleMap,
             position: {
@@ -41,7 +45,8 @@ export class CustomMap {
             }
         });
 
-        marker.addListener('click', () => {
+        marker.addListener("click", () =>
+        {
             const infoWindow = new google.maps.InfoWindow({
                 content: mappable.markerContent()
             });

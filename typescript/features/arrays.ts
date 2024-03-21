@@ -1,11 +1,11 @@
 // Empty arrays must have a type annotation.
-const carMarkers = ['ford', 'toyota', 'chevy'];
+const carMarkers = ["ford", "toyota", "chevy"];
 const dates = [new Date(), new Date()];
 
 const carsByMe = [
-    ['f150'],
-    ['corolla'],
-    ['fiat']
+    ["f150"],
+    ["corolla"],
+    ["fiat"]
 ];
 
 const cars: string[][] = [];
@@ -19,7 +19,8 @@ const myCar = carMarkers.pop();
 // carMarkers.push(100);
 
 // Help with 'map'
-carMarkers.map((car: string) => {
+carMarkers.map((car: string) =>
+{
     return car; // We can use string methods here.
 });
 
@@ -28,14 +29,14 @@ carMarkers.map((car: string) => {
 // Flexible types
 // const importantDates = [new Date(), '2034-02-03']; // Goal
 const importantDates: (Date | string)[] = [];
-importantDates.push('2034-02-03');
+importantDates.push("2034-02-03");
 importantDates.push(new Date());
 
 
 // Tuples
 // They are used to represent an object that contains initialized values.
 const drink = {
-    color: 'brown',
+    color: "brown",
     carbonated: true,
     sugar: 40
 };
@@ -44,9 +45,9 @@ const drink = {
 type Drink = [string, boolean, number];
 
 // Making an array into a tuple. Not used very often.
-const pepsi: Drink = ['brown', true, 60];
-const sprite: Drink = ['clear', true, 40];
-const tea: Drink = ['brown', false, 0];
+const pepsi: Drink = ["brown", true, 60];
+const sprite: Drink = ["clear", true, 40];
+const tea: Drink = ["brown", false, 0];
 
 const carSpecs: [number, number] = [400, 3000];
 const carStats = { // Better
