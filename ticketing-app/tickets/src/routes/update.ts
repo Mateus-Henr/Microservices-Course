@@ -1,6 +1,6 @@
 import express, {Request, Response} from "express";
 import {Ticket} from "../models/ticket";
-import {NotAuthorizedError, NotFoundError, requireAuth, validateRequest} from "@sgtickers-course/common";
+import {NotAuthorizedError, NotFoundError, requireAuth, validateRequest} from "@sgtickers-course/test";
 import {body} from "express-validator";
 import {TicketUpdatedPublisher} from "../events/publishers/ticket-updated-publisher";
 import {natsWrapper} from "../nats-wrapper";

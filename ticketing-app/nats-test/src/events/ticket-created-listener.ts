@@ -1,5 +1,5 @@
 import {Message} from "node-nats-streaming";
-import {Listener, Subjects, TicketCreatedEvent} from "@sgtickers-course/common";
+import {Listener, Subjects, TicketCreatedEvent} from "@sgtickers-course/test";
 
 export class TicketCreatedListener extends Listener<TicketCreatedEvent>
 {

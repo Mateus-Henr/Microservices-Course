@@ -1,6 +1,6 @@
 import express from "express";
 import {json} from "body-parser";
-import {currentUser, errorHandler, NotFoundError} from "@sgtickers-course/common";
+import {currentUser, errorHandler, NotFoundError} from "@sgtickers-course/test";
 import cookieSession from "cookie-session";
 import {createTicketRouter} from "./routes/new";
 import {showTicketRouter} from "./routes/show";

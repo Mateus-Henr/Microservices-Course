@@ -1,6 +1,6 @@
 import express, {Request, Response} from "express";
 import {body} from "express-validator";
-import {BadRequestError, validateRequest} from "@sgtickers-course/common";
+import {BadRequestError, validateRequest} from "@sgtickers-course/test";
 import {User} from "../models/user";
 import {Password} from "../services/password";
 import jwt from "jsonwebtoken";

@@ -1,4 +1,4 @@
-import {Publisher, Subjects, TicketUpdatedEvent} from "@sgtickers-course/common";
+import {Publisher, Subjects, TicketUpdatedEvent} from "@sgtickers-course/test";
 
 export class TicketUpdatedPublisher extends Publisher<TicketUpdatedEvent>
 {

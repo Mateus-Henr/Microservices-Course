@@ -1,5 +1,5 @@
 import express from "express";
-import {currentUser} from "@sgtickers-course/common";
+import {currentUser} from "@sgtickers-course/test";
 
 const router = express.Router();
 

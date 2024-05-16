@@ -2,7 +2,7 @@ import express, {Request, Response} from "express";
 import {body} from "express-validator";
 import jwt from "jsonwebtoken";
 import {User} from "../models/user";
-import {BadRequestError, validateRequest} from "@sgtickers-course/common";
+import {BadRequestError, validateRequest} from "@sgtickers-course/test";
 
 const router = express.Router();
 

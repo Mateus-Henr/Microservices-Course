@@ -1,5 +1,5 @@
 import express, {Request, Response} from "express";
-import {requireAuth, validateRequest} from "@sgtickers-course/common";
+import {requireAuth, validateRequest} from "@sgtickers-course/test";
 import {body} from "express-validator";
 import {Ticket} from "../models/ticket";
 import {TicketCreatedPublisher} from "../events/publishers/ticket-created-publisher";

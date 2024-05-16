@@ -4,7 +4,7 @@ import {currentUserRouter} from "./routes/current-user";
 import {signInRouter} from "./routes/signin";
 import {signUpRouter} from "./routes/signup";
 import {signOutRouter} from "./routes/signout";
-import {errorHandler, NotFoundError} from "@sgtickers-course/common";
+import {errorHandler, NotFoundError} from "@sgtickers-course/test";
 import cookieSession from "cookie-session";
 
 require("express-async-errors");
