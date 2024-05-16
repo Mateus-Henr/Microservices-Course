@@ -1,4 +1,5 @@
 import express from "express";
+require("express-async-errors");
 import {json} from "body-parser";
 import {currentUser, errorHandler, NotFoundError} from "@sgtickers-course/test";
 import cookieSession from "cookie-session";
@@ -6,8 +7,6 @@ import {deleteOrderRouter} from "./routes/delete";
 import {showOrderRouter} from "./routes/show";
 import {newOrderRouter} from "./routes/new";
 import {indexOrderRouter} from "./routes";
-
-require("express-async-errors");
 
 const app = express();
 

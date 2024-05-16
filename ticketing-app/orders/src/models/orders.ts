@@ -2,6 +2,8 @@ import mongoose from "mongoose";
 import {OrderStatus} from "@sgtickers-course/test";
 import {TicketDoc} from "./ticket";
 
+export {OrderStatus}; // Re-exporting to have one source of info.
+
 interface OrderAttrs
 {
     userId: string;
